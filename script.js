@@ -22,8 +22,27 @@ import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com
   const analytics = getAnalytics(app);
 
 //input ko store keya
-const submit=document.getElementById('email').value
-  const submit=document.getElementById('password').value
+const submit=document.getElementById('email').value;
+  const submit=document.getElementById('password').value;
 
-    const submit=document.getElementNyId('submit').value
+    const submit=document.getElementNyId('submit').value;
+submit.addEventListener("click",function(event){
+  event.preventDefault()
+  //registration data goes to firebase
+  createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed up 
+    const user = userCredential.user;
+    alert("Account bana rha hu babar karo")
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
+    alert("gundai nahi karne ka edhar")
+  });
+})
+
+      
 </script>

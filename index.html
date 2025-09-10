@@ -274,28 +274,6 @@
     </div>
   </div>
 
-  <script>
-    // Password toggle
-    function togglePassword() {
-      const passwordInput = document.getElementById("password");
-      passwordInput.type = passwordInput.type === "password" ? "text" : "password";
-    }
-
-    // Form validation + shake effect
-    document.getElementById("loginForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-
-      if (!email.includes("@") || password.length < 6) {
-        this.classList.add("shake");
-        setTimeout(() => this.classList.remove("shake"), 300);
-        alert("Invalid email or password! Password must be at least 6 characters.");
-      } else {
-        alert("✅ Login Successful!");
-        // Redirect or API call here
-      }
-    });
   </script>
 </body>
 </html>  

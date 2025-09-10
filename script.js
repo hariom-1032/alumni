@@ -21,13 +21,14 @@ import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
 
-//input ko store keya
-const submit=document.getElementById('email').value;
-  const submit=document.getElementById('password').value;
+
 
     const submit=document.getElementNyId('submit').value;
 submit.addEventListener("click",function(event){
   event.preventDefault()
+  //input ko store keya
+const submit=document.getElementById('email').value;
+  const submit=document.getElementById('password').value;
   //registration data goes to firebase
   createUserWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {

@@ -30,7 +30,7 @@ submit.addEventListener("click",function(event){
 const email=document.getElementById('email').value;
   const submit=document.getElementById('password').value;
   //registration data goes to firebase
-  createUserWithEmailAndPassword(auth, email, password)
+  signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     // Signed up 
     const user = userCredential.user;

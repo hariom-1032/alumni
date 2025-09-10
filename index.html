@@ -4,255 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Alumni Network Login</title>
+  <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-
-      /* Background image with dark overlay */
-      background: 
-        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url("images.jpg") no-repeat center center/cover;
-    }
-
-    .container {
-      display: flex;
-      max-width: 900px;
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      overflow: hidden;
-      width: 100%;
-    }
-
-    .illustration {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #f3f4f6;
-    }
-
-    .illustration img {
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-    }
-
-    .form-container {
-      flex: 1;
-      padding: 2rem;
-      background: rgba(255, 255, 255, 0.95); /* slightly transparent */
-      border-radius: 0 16px 16px 0;
-    }
-
-    h2 {
-      font-size: 28px;
-      margin-bottom: 1rem;
-      color: #111;
-    }
-
-    h2 span {
-      color: #4f46e5;
-    }
-
-    .social-btn {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      width: 100%;
-      padding: 12px;
-      margin: 8px 0;
-      border: none;
-      border-radius: 10px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .social-btn img {
-      width: 20px;
-      height: 20px;
-    }
-
-    .social-btn.google { background: #fff; border: 1px solid #ddd; }
-    .social-btn.facebook { background: #1877f2; color: white; }
-
-    .social-btn:hover { transform: scale(1.03); }
-
-    .divider {
-      text-align: center;
-      margin: 15px 0;
-      position: relative;
-    }
-
-    .divider span {
-      background: white;
-      padding: 0 10px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .divider::before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background: #ccc;
-      z-index: 0;
-    }
-
-    .input-group {
-      margin: 15px 0;
-      position: relative;
-    }
-
-    label { font-weight: 600; font-size: 14px; }
-
-    input {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      margin-top: 5px;
-      transition: 0.3s;
-    }
-
-    input:focus {
-      border-color: #4f46e5;
-      outline: none;
-      box-shadow: 0 0 8px rgba(79, 70, 229, 0.3);
-    }
-
-    /* Password Toggle */
-    .toggle-password {
-      position: absolute;
-      right: 15px;
-      top: 40px;
-      cursor: pointer;
-      font-size: 18px;
-      color: #555;
-      user-select: none;
-      display: flex;
-      align-items: center;
-    }
-
-    .toggle-password svg {
-      width: 20px;
-      height: 20px;
-      stroke: #555;
-    }
-
-    .options {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 10px 0;
-      font-size: 14px;
-    }
-
-    /* Rounded Toggle Switch */
-    .switch {
-      position: relative;
-      display: inline-block;
-      width: 42px;
-      height: 22px;
-      margin-right: 8px;
-    }
-
-    .switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #ccc;
-      transition: 0.4s;
-      border-radius: 22px;
-    }
-
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 16px;
-      width: 16px;
-      left: 3px;
-      bottom: 3px;
-      background-color: white;
-      transition: 0.4s;
-      border-radius: 50%;
-    }
-
-    input:checked + .slider {
-      background-color: #4f46e5;
-    }
-
-    input:checked + .slider:before {
-      transform: translateX(20px);
-    }
-
-    .login-btn {
-      width: 100%;
-      padding: 12px;
-      background: #4f46e5;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .login-btn:hover {
-      background: #4338ca;
-      transform: scale(1.02);
-    }
-
-    .register {
-      text-align: center;
-      margin-top: 15px;
-    }
-
-    .register a { color: #4f46e5; font-weight: 600; }
-
-    /* Shake animation for invalid login */
-    .shake {
-      animation: shake 0.3s;
-    }
-
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-5px); }
-      50% { transform: translateX(5px); }
-      75% { transform: translateX(-5px); }
-    }
-
-    @media(max-width: 768px) {
-      .container { flex-direction: column; }
-      .illustration { display: none; }
-    }
-  </style>
 </head>
 <body>
   <div class="container">
     <!-- Left Illustration -->
     <div class="illustration">
-      <img src="images.jpg" alt="Login Illustration">
+      <img src="images/rru1.jpeg" alt="Login Illustration">
     </div>
 
     <!-- Right Form -->
@@ -271,91 +31,27 @@
 
       <div class="divider"><span>OR</span></div>
 
-      <form id="loginForm">
+      <form>
         <div class="input-group">
           <label>Email</label>
-          <input type="email" placeholder="example@gmail.com" id="email" required>
+          <input type="email" placeholder="example@gmail.com" required>
         </div>
 
         <div class="input-group">
           <label>Password</label>
-          <input type="password" placeholder="********" id="password" required>
-          <span class="toggle-password" id="togglePassword" onclick="togglePassword()">
-            <!-- Default: eye icon -->
-            <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-            </svg>
-          </span>
+          <input type="password" placeholder="********" required>
         </div>
 
         <div class="options">
-          <label>
-            <span class="switch">
-              <input type="checkbox" id="rememberMe">
-              <span class="slider"></span>
-            </span>
-            Remember me
-          </label>
+          <label><input type="checkbox"> Remember me</label>
           <a href="#">Forgot Password?</a>
         </div>
 
         <button type="submit" class="login-btn">Login</button>
 
-        <p class="register">Don’t have an account? <a href="register.html">Register</a></p>
+        <p class="register">Don’t have an account? <a href="#">Register</a></p>
       </form>
     </div>
   </div>
-
-  <script>
-    // Password toggle
-    function togglePassword() {
-      const passwordInput = document.getElementById("password");
-      const eyeIcon = document.getElementById("eyeIcon");
-
-      if (passwordInput.type === "password") {
-        passwordInput.type = "text";
-        eyeIcon.outerHTML = `
-          <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M13.875 18.825A10.05 10.05 0 0112 19c-4.477 0-8.268-2.943-9.542-7a9.97 
-              9.97 0 012.157-3.31M9.88 9.88a3 3 0 104.24 4.24" />
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M6.1 6.1L17.9 17.9" />
-          </svg>
-        `;
-      } else {
-        passwordInput.type = "password";
-        eyeIcon.outerHTML = `
-          <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" fill="none" 
-            viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 
-              8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 
-              7-4.477 0-8.268-2.943-9.542-7z" />
-          </svg>
-        `;
-      }
-    }
-
-    // Form validation + shake effect
-    document.getElementById("loginForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-
-      if (!email.includes("@") || password.length < 6) {
-        this.classList.add("shake");
-        setTimeout(() => this.classList.remove("shake"), 300);
-        alert("Invalid email or password! Password must be at least 6 characters.");
-      } else {
-        alert("✅ Login Successful!");
-      }
-    });
-  </script>
 </body>
 </html>

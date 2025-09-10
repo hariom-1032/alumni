@@ -18,7 +18,7 @@
   const auth = getAuth(app);
 
   // Handle form submission
-  const form = document.getElementById('signupForm');
+  const form = document.getElementById('submit');
 
   form.addEventListener("submit", function(event) {
     event.preventDefault();

@@ -20,7 +20,7 @@
   // Handle form submission
   const form = document.getElementById('submit');
 
-  form.addEventListener("submit", function(event) {
+  form.addEventListener("click", function(event) {
     event.preventDefault();
 
     const email = document.getElementById('email').value.trim();

@@ -35,6 +35,7 @@ const submit=document.getElementById('email').value;
     // Signed up 
     const user = userCredential.user;
     alert("Account bana rha hu babar karo")
+    window.location.href="index.html"
     // ...
   })
   .catch((error) => {

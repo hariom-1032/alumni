@@ -7,8 +7,6 @@
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <script type="module" src="login.js" defer> </script>
-  
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -147,6 +145,53 @@
       font-size: 14px;
     }
 
+    /* Rounded Toggle Switch */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 42px;
+      height: 22px;
+      margin-right: 8px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 22px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #4f46e5;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(20px);
+    }
+
     .login-btn {
       width: 100%;
       padding: 12px;
@@ -225,7 +270,13 @@
         </div>
 
         <div class="options">
-          <label><input type="checkbox"> Remember me</label>
+          <label>
+            <span class="switch">
+              <input type="checkbox" id="rememberMe">
+              <span class="slider"></span>
+            </span>
+            Remember me
+          </label>
           <a href="#">Forgot Password?</a>
         </div>
 
@@ -260,4 +311,4 @@
     });
   </script>
 </body>
-</html>
+</html>  

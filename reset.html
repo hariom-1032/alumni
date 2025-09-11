@@ -5,34 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forgot Password</title>
     <style>
-        /* Add your CSS styling here */
-        body { font-family: sans-serif; }
-        .container { max-width: 400px; margin: 50px auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px; }
-        input { width: 100%; padding: 8px; margin-bottom: 10px; }
-        button { width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f0f2f5; }
+        .container { background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); text-align: center; }
+        input[type="email"] { width: 100%; padding: 0.8rem; margin-bottom: 1rem; border: 1px solid #ddd; border-radius: 4px; }
+        button { width: 100%; padding: 0.8rem; border: none; background-color: #007bff; color: white; border-radius: 4px; cursor: pointer; font-size: 1rem; }
+        button:hover { background-color: #0056b3; }
+        .message { margin-top: 1rem; color: green; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Forgot Your Password?</h2>
-        <p>Enter your email address below, and we'll send you a link to reset your password.</p>
-        <form id="forgot-password-form">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" required>
-            <button type="submit">Send Reset Link</button>
+        <h2>Forgot Password</h2>
+        <p>Enter your email address and we'll send you a link to reset your password.</p>
+        <form id="reset-form">
+            <input type="email" id="email" placeholder="Enter your email" required>
+            <button type="submit">Send Reset Email</button>
         </form>
-        <p id="message"></p>
+        <p id="message" class="message"></p>
     </div>
 
-    <script>
-        document.getElementById('forgot-password-form').addEventListener('submit', async function(event) {
-            event.preventDefault();
-            const email = document.getElementById('email').value;
-            const messageElement = document.getElementById('message');
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
 
-            // In a real application, you would send this email to your backend
-            console.log('Password reset requested for:', email);
-            messageElement.textContent = 'If an account with that email exists, we have sent a password reset link.';
+    <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        const resetForm = document.getElementById('reset-form');
+        const emailInput = document.getElementById('email');
+        const messageDiv = document.getElementById('message');
+
+        resetForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = emailInput.value;
+
+            auth.sendPasswordResetEmail(email)
+                .then(() => {
+                    // Password reset email sent.
+                    messageDiv.textContent = 'Password reset email sent! Please check your inbox.';
+                })
+                .catch((error) => {
+                    const errorMessage = error.message;
+                    messageDiv.textContent = errorMessage;
+                    messageDiv.style.color = 'red';
+                });
         });
     </script>
 </body>
